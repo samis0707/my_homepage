@@ -8,7 +8,7 @@ python3 -m http.server 8080
 
 | Pfad | Inhalt |
 | --- | --- |
-| `index.html` | Die Seite: Name, Jetzt (aktuelle Projekte), Kontakt |
+| `index.html` | Die Seite: Name, Arbeitsweise, Jetzt, Werdegang (aus dem CV), Kontakt |
 | `assets/site.css` | Farben als Tokens (hell und dunkel), eine Schrift, eine Akzentfarbe |
 | `assets/site.js` | Der Name aus Rasterpunkten (Canvas 2D, ohne Bibliothek) |
 | `assets/fonts/` | Plus Jakarta Sans und IBM Plex Mono, SIL Open Font License, selbst gehostet |
@@ -32,9 +32,12 @@ Bei „Bewegung reduzieren“ steht das Raster sofort, ohne JavaScript bleibt de
 
 ## Auslieferung
 
-`Dockerfile` baut einen Caddy-Server für Railway (wie bei digitalemedien).
+Vercel, verbunden mit diesem GitHub-Repo: Jeder Push baut eine Vorschau, der Produktions-Branch geht live.
+`vercel.json` setzt saubere URLs und Header. Vercel Web Analytics und Speed Insights sind per Skript-Tag
+eingebunden (`/_vercel/insights/script.js`, `/_vercel/speed-insights/script.js`) und müssen im Projekt aktiviert sein.
 
 ## Offen
 
 - Kontaktadresse `hallo@samis-ellsaesser.de` bestätigen (index.html, impressum.html, llms.txt)
-- Impressum ausfüllen
+- Impressum ausfüllen, Datenschutzerklärung prüfen lassen
+- Entwurfs-Schalter (`.lab`) vor dem Livegang entfernen
