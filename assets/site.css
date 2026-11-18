@@ -1,0 +1,129 @@
+/* samis-ellsaesser.de
+   Eine Seite, eine Schrift, eine Akzentfarbe. Der Name setzt sich aus Rasterpunkten zusammen,
+   alles andere bleibt ruhig. Verwandt mit dem Druckbogen von digitalemedien.de. */
+
+@font-face{font-family:"Plus Jakarta Sans";src:url("fonts/plus-jakarta-sans-latin-ext-wght-normal.woff2") format("woff2");font-weight:200 800;font-style:normal;font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Plus Jakarta Sans";src:url("fonts/plus-jakarta-sans-latin-wght-normal.woff2") format("woff2");font-weight:200 800;font-style:normal;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"IBM Plex Mono";src:url("fonts/plex-mono-400.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
+
+:root{
+  --paper:#f3f3ef;
+  --ink:#121316;
+  --ink-2:#5b5d63;
+  --line:rgba(18,19,22,.12);
+  --hover:rgba(18,19,22,.035);
+  --accent:#ff5a1f;
+  --font:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --gutter:clamp(16px,4vw,40px);
+  color-scheme:light dark;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --paper:#111214;
+    --ink:#ecece6;
+    --ink-2:#9a9ca3;
+    --line:rgba(236,236,230,.13);
+    --hover:rgba(236,236,230,.04);
+    --accent:#ff7440;
+  }
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--font);font-size:1.0625rem;line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,p,ul{margin:0}
+ul{padding:0;list-style:none}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--accent);color:#fff}
+:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:2px}
+
+.wrap{width:100%;max-width:76rem;margin-inline:auto;padding-inline:max(var(--gutter),env(safe-area-inset-left,0px)) max(var(--gutter),env(safe-area-inset-right,0px))}
+.mono{font-family:var(--mono);font-size:.8rem;letter-spacing:.02em;font-weight:400}
+.muted{color:var(--ink-2)}
+.skip{position:absolute;left:-999px;top:0;background:var(--ink);color:var(--paper);padding:.6rem 1rem;z-index:9}
+.skip:focus{left:var(--gutter);top:.5rem}
+
+/* Kopf */
+.top{display:flex;align-items:center;justify-content:space-between;padding-block:1.4rem}
+.brand{display:inline-flex;align-items:center;gap:.55rem;font-weight:800;font-size:1.15rem;letter-spacing:-.03em}
+.brand__dot{width:.6rem;height:.6rem;border-radius:50%;background:var(--accent)}
+.nav{display:flex;gap:1.6rem;font-weight:550;font-size:.95rem}
+.nav a{padding-block:.3rem;border-bottom:1.5px solid transparent;transition:border-color .2s}
+.nav a:hover{border-color:var(--accent)}
+
+/* Bühne: Name aus Rasterpunkten */
+.hero{padding-block:clamp(3rem,12vh,9rem) clamp(4rem,12vh,8rem)}
+.name{
+  position:relative;
+  font-weight:800;
+  font-size:clamp(3.4rem,15.5vw,14rem);
+  line-height:.9;
+  letter-spacing:-.055em;
+  margin-left:-.04em;
+}
+.name__line{display:block;padding-bottom:.04em}
+.name__canvas{position:absolute;inset:-.2em -.25em;width:calc(100% + .5em);height:calc(100% + .4em);pointer-events:none;display:none}
+/* Mit laufendem Raster bleibt der echte Text für Lesegeräte und Auswahl da, nur unsichtbar */
+.is-raster .name__line{color:transparent}
+.is-raster .name__canvas{display:block}
+
+.lead{max-width:34rem;margin-top:clamp(2rem,5vw,3rem);font-size:clamp(1.1rem,1.6vw,1.3rem);line-height:1.5;color:var(--ink)}
+.meta{display:flex;gap:.6rem;margin-top:1.4rem;color:var(--ink-2)}
+.meta__arrow{color:var(--accent)}
+
+/* Abschnitte */
+.block{padding-block:clamp(3rem,8vw,6rem);border-top:1px solid var(--line)}
+.block__head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:1.6rem}
+.block h2{text-transform:uppercase;letter-spacing:.08em}
+
+/* Projekte als Zeilen */
+.work li + li{border-top:1px solid var(--line)}
+.row{
+  display:grid;grid-template-columns:minmax(10rem,15rem) 1fr auto;gap:.4rem 2rem;align-items:baseline;
+  padding:1.4rem .6rem;margin-inline:-.6rem;border-radius:6px;
+  transition:background-color .2s;
+}
+.row__name{font-weight:700;font-size:1.3rem;letter-spacing:-.02em;transition:color .2s}
+.row__text{color:var(--ink-2);max-width:40rem}
+.row__tag{display:inline-flex;align-items:center;gap:.45rem;color:var(--ink-2);white-space:nowrap}
+a.row:hover{background:var(--hover)}
+a.row:hover .row__name{color:var(--accent)}
+a.row .row__name::after{content:"↗";display:inline-block;margin-left:.35em;font-size:.8em;opacity:0;transform:translate(-.2em,.2em);transition:opacity .2s,transform .2s}
+a.row:hover .row__name::after,a.row:focus-visible .row__name::after{opacity:1;transform:none}
+.live{width:.45rem;height:.45rem;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 var(--accent);animation:puls 2.4s ease-out infinite}
+@keyframes puls{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 55%,transparent)}70%,100%{box-shadow:0 0 0 .5rem transparent}}
+.stack{margin-top:2rem}
+
+/* Kontakt */
+.block--contact h2{margin-bottom:1.6rem}
+.say{font-size:clamp(2rem,5.5vw,4rem);font-weight:750;line-height:1.05;letter-spacing:-.04em}
+.links{display:flex;flex-wrap:wrap;align-items:baseline;gap:1rem 2rem;margin-top:2rem}
+.big{font-size:clamp(1.1rem,2.4vw,1.5rem);font-weight:600;background:linear-gradient(var(--accent),var(--accent)) 0 100%/0 2px no-repeat;padding-bottom:.15em;transition:background-size .3s;overflow-wrap:anywhere}
+.big:hover{background-size:100% 2px}
+.arrow{font-weight:550}
+.arrow::after{content:"↗";margin-left:.3em;display:inline-block;transition:transform .2s}
+.arrow:hover::after{transform:translate(.15em,-.15em)}
+
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.6rem 2rem;padding-block:2rem 2.6rem;border-top:1px solid var(--line)}
+.foot a:hover{color:var(--ink)}
+
+@media (max-width:720px){
+  .name{font-size:23vw}
+  .hero{padding-block:2.5rem 4rem}
+  .row{grid-template-columns:1fr auto;gap:.35rem 1rem}
+  .row__text{grid-column:1 / -1;grid-row:2}
+  .block__head{flex-direction:column;gap:.2rem}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none !important;animation:none !important}
+}
+
+/* Impressum */
+.legal{padding-block:3rem 6rem;max-width:44rem;margin-left:0}
+.legal > * + *{margin-top:1.1rem}
+.legal h2{margin-top:2.6rem;text-transform:uppercase;letter-spacing:.08em}

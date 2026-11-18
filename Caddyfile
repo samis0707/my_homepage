@@ -1,0 +1,19 @@
+{
+	admin off
+	auto_https off
+}
+
+:{$PORT:8080} {
+	root * /srv
+	encode zstd gzip
+
+	header {
+		X-Content-Type-Options nosniff
+		Referrer-Policy strict-origin-when-cross-origin
+	}
+
+	@schriften path /assets/fonts/*
+	header @schriften Cache-Control "public, max-age=31536000, immutable"
+
+	file_server
+}

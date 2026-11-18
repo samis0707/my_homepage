@@ -1,0 +1,15 @@
+# Samis Ellsässer
+
+> Softwareentwickler. Baut digitale Werkzeuge für Druck, lokale Medien und KI-Agenten.
+
+## Projekte
+
+- [Seeräuber digital](https://www.xn--seeruber-digital-ynb.com/): das Seeräuber-Blättle (Amtsblatt für Böckingen und Klingenberg) als App, mit Support-Agent
+- [druck-s](https://www.druck-s.de/): Druckaufträge online hochladen, prüfen und freigeben, mit Schnittstelle für KI-Assistenten
+- digitalemedien.de: Relaunch der Website der digitale medien print gmbh in Heilbronn
+- Retorix: personalisierte Drucksachen aus Vorlage und Datenliste (in Arbeit)
+
+## Kontakt
+
+- E-Mail: hallo@samis-ellsaesser.de
+- GitHub: https://github.com/samis0707
