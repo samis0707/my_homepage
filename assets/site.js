@@ -241,13 +241,14 @@
 
   function auftakt() {
     if (running) return;
-    if (!root.classList.contains('auftakt-vor')) { if (raster.ok) raster.show(); return; }
+    if (!root.classList.contains('auftakt-vor')) { if (raster.ok) raster.show(); setTimeout(function () { rand.demo(); }, 600); return; }
     if (!raster.ok) { reveal(false); return; }
     running = true;
     raster.wait();
     var notbremse = setTimeout(function () { raster.show(); reveal(false); }, 6000);
     zeigerAuftakt().then(function () {
       clearTimeout(notbremse); zeiger.style.opacity = 0; running = false;
+      setTimeout(function () { rand.demo(); }, 250);
     }, function () { clearTimeout(notbremse); raster.show(); reveal(false); running = false; });
   }
 
@@ -275,6 +276,114 @@
   document.addEventListener('pointerleave', raster.leave);
   window.addEventListener('pointerup', function (e) { if (e.pointerType !== 'mouse') raster.leave(); });
 
+
+  /* ------------------------------------------------------------------ 4 Rand (mobil)
+     Wie die Lautstärketasten unter iOS: Beim Scrollen drückt sich der linke Bildschirmrand dort ein,
+     wo am iPhone die Tasten sitzen. Hoch scrollen = obere Taste (lauter), runter = untere (leiser).
+     In der Delle zeigt ein Regler den Scroll-Fortschritt. Feder mit leichtem Nachschwingen. */
+  var rand = (function () {
+    var api = { an: false, demo: function () {}, setAn: function () {} };
+    var cv = document.createElement('canvas');
+    cv.className = 'rand'; cv.setAttribute('aria-hidden', 'true'); cv.hidden = true;
+    document.body.appendChild(cv);
+    var ctx = cv.getContext && cv.getContext('2d');
+    if (!ctx) return api;
+    var W = 56, H = 0, dpr = 1, raf = 0, lastY = 0, lastT = 0, prog = 0, progShown = 0;
+    var tasten = [{ y: 0.22, d: 0, v: 0, ziel: 0, halt: 0 }, { y: 0.31, d: 0, v: 0, ziel: 0, halt: 0 }];
+    var TIEFE = 16, LANG = 62, RAMPE = 30;
+
+    function size() {
+      H = window.innerHeight; dpr = Math.min(window.devicePixelRatio || 1, 3);
+      cv.width = W * dpr; cv.height = H * dpr; cv.style.height = H + 'px';
+    }
+    function progress() {
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      return max > 0 ? clamp01((window.scrollY || 0) / max) : 0;
+    }
+    /* Querschnitt der Delle: flach in der Mitte, weich auslaufend */
+    function profil(dy) {
+      var a = Math.abs(dy), h = LANG / 2;
+      if (a <= h) return 1;
+      if (a >= h + RAMPE) return 0;
+      return 0.5 + 0.5 * Math.cos(Math.PI * (a - h) / RAMPE);
+    }
+    function pill(x, y, w, h) {
+      if (h <= 0) return;
+      var r = Math.min(w / 2, h / 2);
+      ctx.beginPath(); ctx.moveTo(x + r, y);
+      ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r);
+      ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.fill();
+    }
+    function draw(now) {
+      raf = 0;
+      var bewegt = false;
+      tasten.forEach(function (k) {
+        if (now > k.halt) k.ziel *= 0.86;                 // Taste losgelassen
+        k.v += (k.ziel - k.d) * 0.2 - k.v * 0.3;           // Feder, leicht unterdämpft
+        k.d += k.v;
+        if (Math.abs(k.v) > 0.0015 || Math.abs(k.d) > 0.004 || k.ziel > 0.004) bewegt = true;
+      });
+      progShown += (prog - progShown) * 0.2;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, W, H);
+      var cs = getComputedStyle(root);
+      var ink = cs.getPropertyValue('--ink').trim() || '#14161c', acc = cs.getPropertyValue('--accent').trim() || '#009fe3';
+      tasten.forEach(function (k) {
+        var d = Math.max(0, k.d) * TIEFE;
+        if (d < 0.3) return;
+        var cy = k.y * H, top = cy - LANG / 2 - RAMPE, bot = cy + LANG / 2 + RAMPE;
+        ctx.beginPath(); ctx.moveTo(0, top);
+        for (var y = top; y <= bot; y += 2) ctx.lineTo(d * profil(y - cy), y);
+        ctx.lineTo(0, bot); ctx.closePath();
+        ctx.save();
+        ctx.shadowColor = 'rgba(20,22,28,.3)'; ctx.shadowBlur = 12; ctx.shadowOffsetX = 2;
+        ctx.fillStyle = ink; ctx.fill();
+        ctx.restore();
+        if (d > 7) {                                        // Regler in der Delle
+          var tw = 4, th = LANG - 14, tx = d / 2 - tw / 2, ty = cy - th / 2;
+          ctx.globalAlpha = clamp01((d - 7) / 5);
+          ctx.fillStyle = 'rgba(255,255,255,.22)'; pill(tx, ty, tw, th);
+          var fh = Math.max(tw, th * progShown);
+          ctx.fillStyle = acc; pill(tx, ty + th - fh, tw, fh);
+          ctx.globalAlpha = 1;
+        }
+      });
+      if (bewegt || Math.abs(prog - progShown) > 0.001) kick();
+    }
+    function kick() { if (!raf && api.an) raf = requestAnimationFrame(draw); }
+
+    window.addEventListener('scroll', function () {
+      if (!api.an) return;
+      var now = performance.now(), y = window.scrollY || 0;
+      var v = (y - lastY) / Math.max(16, now - lastT);
+      lastY = y; lastT = now; prog = progress();
+      if (Math.abs(v) > 0.05) {
+        var k = v < 0 ? tasten[0] : tasten[1];
+        k.ziel = Math.max(k.ziel, Math.min(1, 0.35 + Math.abs(v) * 0.5));
+        k.halt = now + 120;
+      }
+      kick();
+    }, { passive: true });
+    window.addEventListener('resize', function () { if (api.an) { size(); kick(); } });
+
+    api.druck = function (i, ms) { var k = tasten[i]; k.ziel = 1; k.halt = performance.now() + (ms || 180); kick(); };
+    /* Einmal lauter, einmal leiser: zeigt, dass der Rand lebt */
+    api.demo = function () {
+      if (!api.an) return;
+      prog = progress();
+      api.druck(0, 170);
+      setTimeout(function () { api.druck(1, 170); }, 560);
+    };
+    api.setAn = function (on) {
+      api.an = !!on; cv.hidden = !on;
+      if (on) { size(); lastY = window.scrollY || 0; lastT = performance.now(); prog = progShown = progress(); kick(); }
+    };
+    return api;
+  })();
+  var mobil = window.matchMedia && window.matchMedia('(max-width: 720px), (pointer: coarse)').matches;
+  var randWahl = ls('se-rand');
+  rand.setAn(!(reduce && reduce.matches) && (randWahl ? randWahl === 'an' : mobil));
+
   /* ------------------------------------------------------------------ 3 Entwurf und Kontakt */
   var lab = document.getElementById('lab');
   if (lab) {
@@ -283,8 +392,12 @@
       Array.prototype.forEach.call(lab.querySelectorAll('[data-wahl]'), function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-wahl') === wahl)); });
     };
     mark();
+    var randKnopf = document.getElementById('lab-rand');
+    var randMark = function () { if (randKnopf) randKnopf.setAttribute('aria-pressed', String(rand.an)); };
+    randMark();
     lab.addEventListener('click', function (e) {
       var b = e.target.closest('button'); if (!b) return;
+      if (b.id === 'lab-rand') { rand.setAn(!rand.an); ls('se-rand', rand.an ? 'an' : 'aus'); randMark(); rand.demo(); return; }
       if (b.hasAttribute('data-wahl')) { wahl = b.getAttribute('data-wahl'); ls('se-auftakt', wahl); mark(); }
       if ((b.id === 'lab-nochmal' || b.hasAttribute('data-wahl')) && wahl !== 'ohne' && !running) {
         window.scrollTo(0, 0);
@@ -296,7 +409,7 @@
 
   var copy = document.getElementById('mail-copy');
   if (copy) copy.addEventListener('click', function () {
-    var txt = copy.getAttribute('data-copy');
+    var txt = document.getElementById('mail').textContent.trim();
     var ok = function () { copy.textContent = 'Kopiert'; setTimeout(function () { copy.textContent = 'Adresse kopieren'; }, 2000); };
     var pick = function () { var r = document.createRange(); r.selectNodeContents(document.getElementById('mail')); var s = getSelection(); s.removeAllRanges(); s.addRange(r); copy.textContent = 'Markiert, jetzt kopieren'; };
     try { navigator.clipboard.writeText(txt).then(ok, pick); } catch (e) { pick(); }

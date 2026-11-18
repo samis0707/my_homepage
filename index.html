@@ -174,10 +174,9 @@ window.__seNot=setTimeout(function(){d.classList.remove('auftakt-vor')},7000);
   <section class="block block--contact wrap" id="kontakt" aria-labelledby="kontakt-h" data-auf>
     <h2 id="kontakt-h" class="mono">Kontakt</h2>
     <p class="say">Eine Idee, ein Ablauf, der nervt?<br>Schreib mir.</p>
-    <!-- TODO: Kontaktadresse bestätigen -->
     <p class="links">
-      <a class="big" id="mail" href="mailto:hallo@samis-ellsaesser.de">hallo@samis-ellsaesser.de</a>
-      <button class="copy" type="button" id="mail-copy" data-copy="hallo@samis-ellsaesser.de">Adresse kopieren</button>
+      <a class="big" id="mail" data-enc="ZWQucmVzc2Vhc2xsZS1zaW1hc0BvbGxlaA==" data-art="mail" href="#kontakt">Mail-Adresse wird geladen</a>
+      <button class="copy" type="button" id="mail-copy">Adresse kopieren</button>
       <a class="arrow" href="https://github.com/samis0707" rel="noopener">GitHub</a>
     </p>
     <p class="note muted">Auf LinkedIn bin ich kaum aktiv. Eine Mail erreicht mich am schnellsten.</p>
@@ -196,8 +195,11 @@ window.__seNot=setTimeout(function(){d.classList.remove('auftakt-vor')},7000);
   <button type="button" data-wahl="zeiger" aria-pressed="true">Zeiger</button>
   <button type="button" data-wahl="ohne" aria-pressed="false">ohne</button>
   <button type="button" id="lab-nochmal">↻ noch einmal</button>
+  <span class="lab__label">· Rand</span>
+  <button type="button" id="lab-rand" aria-pressed="false">Delle</button>
 </div>
 
+<script src="assets/kontakt.js" defer></script>
 <script src="assets/site.js" defer></script>
 <!-- Vercel Web Analytics (ohne Cookies) und Speed Insights; im Artefakt entfernt -->
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};window.si=window.si||function(){(window.siq=window.siq||[]).push(arguments)};</script>

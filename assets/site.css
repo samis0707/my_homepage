@@ -139,6 +139,9 @@ button{font:inherit;color:inherit}
 .ring.is-an{animation:ring .7s cubic-bezier(.2,.7,.2,1) forwards}
 @keyframes ring{0%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(9)}}
 
+/* Rand: Delle wie bei den Lautstärketasten (Canvas, von site.js gezeichnet) */
+.rand{position:fixed;left:0;top:0;z-index:35;width:56px;pointer-events:none}
+
 /* Entwurfs-Schalter (wie das Lab auf digitalemedien.de), entfällt live */
 .lab{position:fixed;z-index:40;right:max(12px,env(safe-area-inset-right,0px));bottom:max(12px,env(safe-area-inset-bottom,0px));
   display:flex;flex-wrap:wrap;align-items:center;gap:.4rem .6rem;max-width:calc(100% - 24px);

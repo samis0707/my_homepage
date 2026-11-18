@@ -13,6 +13,7 @@ python3 -m http.server 8080
 | `assets/site.js` | Der Name aus Rasterpunkten (Canvas 2D, ohne Bibliothek) |
 | `assets/fonts/` | Plus Jakarta Sans und IBM Plex Mono, SIL Open Font License, selbst gehostet |
 | `tools/artefakt.py` | baut `dist/artefakt.html` für die Vorschau als Claude-Artefakt |
+| `assets/kontakt.js` | setzt Mail und Anschrift erst im Browser ein (Schutz vor Crawlern) |
 | `impressum.html` | Impressum und Datenschutz (Platzhalter ausfüllen) |
 | `llms.txt` | Kurzfassung für KI-Assistenten |
 
@@ -38,6 +39,5 @@ eingebunden (`/_vercel/insights/script.js`, `/_vercel/speed-insights/script.js`)
 
 ## Offen
 
-- Kontaktadresse `hallo@samis-ellsaesser.de` bestätigen (index.html, impressum.html, llms.txt)
-- Impressum ausfüllen, Datenschutzerklärung prüfen lassen
+- Postleitzahl im Impressum bestätigen, Datenschutzerklärung prüfen lassen
 - Entwurfs-Schalter (`.lab`) vor dem Livegang entfernen
