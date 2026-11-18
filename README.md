@@ -12,14 +12,22 @@ python3 -m http.server 8080
 | `assets/site.css` | Farben als Tokens (hell und dunkel), eine Schrift, eine Akzentfarbe |
 | `assets/site.js` | Der Name aus Rasterpunkten (Canvas 2D, ohne Bibliothek) |
 | `assets/fonts/` | Plus Jakarta Sans und IBM Plex Mono, SIL Open Font License, selbst gehostet |
+| `tools/artefakt.py` | baut `dist/artefakt.html` für die Vorschau als Claude-Artefakt |
 | `impressum.html` | Impressum und Datenschutz (Platzhalter ausfüllen) |
 | `llms.txt` | Kurzfassung für KI-Assistenten |
 
-## Animation
+## Auftakt
+
+Ein Mauszeiger fliegt herein und klickt auf den Namen; aus dem Klickpunkt schießen die Rasterpunkte in ihre Plätze,
+danach blendet die Seite gestaffelt ein (Muster „Geste & Abgang“ aus dem Skill website-overlay-clips im Repo digitalemedien).
+Overlay-Clips (Roboterhand aus Google Flow) kommen dazu, sobald sie generiert sind; sie lösen dieselben Marken aus.
+Entwurfs-Schalter unten rechts (Zeiger / ohne / noch einmal), vor dem Livegang entfernen.
+
+## Raster
 
 Verwandt mit der Prägung auf digitalemedien.de: Der Name wird als Halbton-Raster abgetastet.
 Beim Laden fliegen die Punkte ein (Daten werden Druck), links feines Raster, rechts fast volle Fläche.
-Die Umlautpunkte im „ä“ tragen die Akzentfarbe. Der Zeiger schiebt die Punkte sanft beiseite.
+Die Umlautpunkte im „ä“ tragen die Akzentfarbe (Prozess-Cyan). Der Zeiger schiebt die Punkte sanft beiseite.
 Bei „Bewegung reduzieren“ steht das Raster sofort, ohne JavaScript bleibt der normale Text.
 
 ## Auslieferung

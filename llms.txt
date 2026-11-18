@@ -1,13 +1,12 @@
 # Samis Ellsässer
 
-> Softwareentwickler. Baut digitale Werkzeuge für Druck, lokale Medien und KI-Agenten.
+> Technischer Berater bei Schwarz Digits. Baut Software für Druck, lokale Medien und KI-Agenten.
 
-## Projekte
+## Aktuell (Stand Dezember 2026)
 
-- [Seeräuber digital](https://www.xn--seeruber-digital-ynb.com/): das Seeräuber-Blättle (Amtsblatt für Böckingen und Klingenberg) als App, mit Support-Agent
-- [druck-s](https://www.druck-s.de/): Druckaufträge online hochladen, prüfen und freigeben, mit Schnittstelle für KI-Assistenten
-- digitalemedien.de: Relaunch der Website der digitale medien print gmbh in Heilbronn
-- Retorix: personalisierte Drucksachen aus Vorlage und Datenliste (in Arbeit)
+- Schwarz Digits: Technischer Berater im Projekt PSNF, einem IT-Projekt zwischen Schwarz Digits und Lidl
+- digitale medien: Relaunch von digitalemedien.de und IT-Beratung für die Druckerei in Heilbronn, mit den Portalen druck-s und Retorix (Dezember 2026)
+- Seeräuber digital: das Seeräuber-Blättle als App mit Support-Agent (Dezember 2026)
 
 ## Kontakt
 

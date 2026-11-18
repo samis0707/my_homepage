@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Samis Ellsässer · Software für Druck, Medien und KI</title>
-<meta name="description" content="Samis Ellsässer baut digitale Werkzeuge für Druck, lokale Medien und KI-Agenten: druck-s, Seeräuber digital, Retorix und mehr.">
+<title>Samis Ellsässer</title>
+<meta name="description" content="Samis Ellsässer: technischer Berater bei Schwarz Digits, baut Software für Druck, lokale Medien und KI-Agenten.">
 <link rel="canonical" href="https://samis-ellsaesser.de/">
-<meta name="theme-color" content="#f3f3ef" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f1f2ee">
+<meta name="color-scheme" content="only light">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="de_DE">
 <meta property="og:title" content="Samis Ellsässer">
@@ -17,14 +17,26 @@
 <link rel="alternate" type="text/plain" href="/llms.txt" title="Kurzfassung für KI-Assistenten">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/fonts/plus-jakarta-sans-latin-wght-normal.woff2">
 <link rel="stylesheet" href="assets/site.css">
+<script>
+/* Auftakt: Klasse vor dem ersten Rendern setzen, damit nichts aufblitzt. Ohne JS bleibt alles sichtbar.
+   Kein Auftakt bei Hash in der Adresse, gescrolltem Start, „Bewegung reduzieren“ oder Entwurfs-Wahl „ohne“. */
+(function(){var d=document.documentElement;try{
+var w=null;try{w=localStorage.getItem('se-auftakt')}catch(e){}
+if(w==='ohne'||location.hash||(window.pageYOffset||0)>40)return;
+if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+d.classList.add('auftakt-vor');
+window.__seNot=setTimeout(function(){d.classList.remove('auftakt-vor')},7000);
+}catch(e){}})();
+</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Samis Ellsässer",
   "url": "https://samis-ellsaesser.de/",
-  "jobTitle": "Softwareentwickler",
-  "knowsAbout": ["Web-Entwicklung", "KI-Agenten", "Druckprozesse", "Lokale Medien", "WebGL"],
+  "jobTitle": "Technischer Berater",
+  "worksFor": { "@type": "Organization", "name": "Schwarz Digits" },
+  "knowsAbout": ["IT-Beratung", "Web-Entwicklung", "KI-Agenten", "Druckprozesse", "Lokale Medien"],
   "sameAs": ["https://github.com/samis0707"]
 }
 </script>
@@ -33,7 +45,13 @@
 <script>document.documentElement.classList.add('js')</script>
 <a class="skip" href="#inhalt">Zum Inhalt springen</a>
 
-<header class="top wrap">
+<!-- Auftakt: ein Zeiger, der den Namen anklickt. Platz für Overlay-Clips (Roboterhand) über data-<name>-mp4 -->
+<div class="zeiger" id="zeiger" aria-hidden="true">
+  <svg viewBox="0 0 24 24"><path d="M4 2.5v17.2l4.6-4.3 2.9 6.6 3.1-1.4-2.9-6.5H18L4 2.5z" fill="#14161c" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg>
+</div>
+<span class="ring" id="ring" aria-hidden="true"></span>
+
+<header class="top wrap" data-auf>
   <a class="brand" href="#start" aria-label="Samis Ellsässer, nach oben"><span class="brand__dot" aria-hidden="true"></span>se</a>
   <nav class="nav" aria-label="Hauptnavigation">
     <a href="#jetzt">Jetzt</a>
@@ -49,66 +67,73 @@
       <span class="name__line">ellsässer</span>
       <canvas class="name__canvas" aria-hidden="true"></canvas>
     </h1>
-    <p class="lead">Ich baue Software für Druck, lokale Medien und KI&#8209;Agenten. Werkzeuge, die echte Abläufe kürzer machen, vom Upload bis zum gedruckten Blatt.</p>
-    <p class="meta mono" aria-hidden="true"><span>Daten</span><span class="meta__arrow">→</span><span>Druck</span></p>
+    <p class="lead" data-auf>Ich baue Software für Druck, lokale Medien und KI&#8209;Agenten. Werkzeuge, die echte Abläufe kürzer machen, vom Upload bis zum gedruckten Blatt.</p>
+    <p class="slug mono" aria-hidden="true" data-auf>
+      <span>samis-ellsaesser.de</span>
+      <span>Stand 12/2026</span>
+      <span>Daten <span class="slug__arrow">→</span> Druck</span>
+      <span class="strip"><i class="c"></i><i class="m"></i><i class="y"></i><i class="k"></i><i class="k5"></i><i class="k2"></i></span>
+    </p>
   </section>
 
-  <section class="block wrap" id="jetzt" aria-labelledby="jetzt-h">
+  <section class="block wrap" id="jetzt" aria-labelledby="jetzt-h" data-auf>
     <header class="block__head">
       <h2 id="jetzt-h" class="mono">Jetzt</h2>
-      <p class="mono muted">Stand November 2026</p>
+      <p class="mono muted">Stand Dezember 2026</p>
     </header>
 
     <ul class="work">
       <li>
-        <a class="row" href="https://www.xn--seeruber-digital-ynb.com/" rel="noopener">
-          <span class="row__name">Seeräuber digital</span>
-          <span class="row__text">Das Seeräuber-Blättle als App: Ausgaben lesen, Termine pflegen, Anzeigen aufgeben. Mit Support-Agent, der Mails beantwortet und an Menschen übergibt.</span>
-          <span class="row__tag mono"><i class="live" aria-hidden="true"></i>live</span>
-        </a>
-      </li>
-      <li>
-        <a class="row" href="https://www.druck-s.de/" rel="noopener">
-          <span class="row__name">druck-s</span>
-          <span class="row__text">Druckaufträge online: hochladen, automatisch prüfen, per Code freigeben. Mit offener Schnittstelle, damit auch KI-Assistenten Anfragen vorbereiten können.</span>
-          <span class="row__tag mono"><i class="live" aria-hidden="true"></i>live</span>
-        </a>
-      </li>
-      <li>
-        <div class="row">
-          <span class="row__name">digitalemedien.de</span>
-          <span class="row__text">Relaunch der Druckerei in Heilbronn. Die Seite als Druckbogen, Blindprägung in WebGL und Druckdaten, die eine KI direkt lesen kann.</span>
-          <span class="row__tag mono">bald</span>
+        <div class="row row--now">
+          <span class="row__name">Schwarz Digits <span class="row__role">Technischer Berater</span></span>
+          <span class="row__text">Im Projekt PSNF, einem IT-Projekt zwischen Schwarz Digits und Lidl. Ich übersetze zwischen Fachbereich und Technik und sorge dafür, dass Architektur und Umsetzung zusammenpassen.</span>
+          <span class="row__tag mono"><i class="live" aria-hidden="true"></i>Position</span>
         </div>
       </li>
       <li>
         <div class="row">
-          <span class="row__name">Retorix</span>
-          <span class="row__text">Eine Vorlage, eine Datenliste, hundert persönliche Drucksachen. Fertig ausgeschossen für die Maschine.</span>
-          <span class="row__tag mono">in Arbeit</span>
+          <span class="row__name">digitale medien <span class="row__role">Website &amp; IT-Beratung</span></span>
+          <span class="row__text">Relaunch von digitalemedien.de für die Druckerei in Heilbronn und IT-Beratung im Haus. Die Seite als Druckbogen mit Blindprägung, Druckdaten, die eine KI direkt lesen kann, und die Portale <a href="https://www.druck-s.de/" rel="noopener">druck-s</a> und Retorix.</span>
+          <span class="row__tag mono">Projekt · Dez 2026</span>
+        </div>
+      </li>
+      <li>
+        <div class="row">
+          <span class="row__name">Seeräuber digital <span class="row__role">App &amp; Support-Agent</span></span>
+          <span class="row__text">Das Seeräuber-Blättle, Amtsblatt für Böckingen und Klingenberg, als App: Ausgaben lesen, Termine pflegen, Anzeigen aufgeben. Mit einem Support-Agenten, der Mails beantwortet und an Menschen übergibt.</span>
+          <span class="row__tag mono">Projekt · Dez 2026</span>
         </div>
       </li>
     </ul>
 
-    <p class="stack mono muted">TypeScript · Python · WebGL · Agenten mit MCP · Railway</p>
+    <p class="stack mono muted">IT-Beratung · TypeScript · Python · WebGL · Agenten mit MCP · Railway</p>
   </section>
 
-  <section class="block block--contact wrap" id="kontakt" aria-labelledby="kontakt-h">
+  <section class="block block--contact wrap" id="kontakt" aria-labelledby="kontakt-h" data-auf>
     <h2 id="kontakt-h" class="mono">Kontakt</h2>
     <p class="say">Eine Idee, ein Ablauf, der nervt?<br>Schreib mir.</p>
     <!-- TODO: Kontaktadresse bestätigen -->
     <p class="links">
-      <a class="big" href="mailto:hallo@samis-ellsaesser.de">hallo@samis-ellsaesser.de</a>
+      <a class="big" id="mail" href="mailto:hallo@samis-ellsaesser.de">hallo@samis-ellsaesser.de</a>
+      <button class="copy" type="button" id="mail-copy" data-copy="hallo@samis-ellsaesser.de">Adresse kopieren</button>
       <a class="arrow" href="https://github.com/samis0707" rel="noopener">GitHub</a>
     </p>
   </section>
 
 </main>
 
-<footer class="foot wrap mono muted">
+<footer class="foot wrap mono muted" data-auf>
   <span>© 2026 Samis Ellsässer</span>
   <a href="impressum.html">Impressum &amp; Datenschutz</a>
 </footer>
+
+<!-- Entwurf: Auftakt vergleichen und wiederholen. Vor dem Livegang entfernen. -->
+<div class="lab mono" id="lab" aria-label="Entwurfs-Schalter">
+  <span class="lab__label">Entwurf · Auftakt</span>
+  <button type="button" data-wahl="zeiger" aria-pressed="true">Zeiger</button>
+  <button type="button" data-wahl="ohne" aria-pressed="false">ohne</button>
+  <button type="button" id="lab-nochmal">↻ noch einmal</button>
+</div>
 
 <script src="assets/site.js" defer></script>
 </body>
