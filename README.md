@@ -8,7 +8,7 @@ python3 -m http.server 8080
 
 | Pfad | Inhalt |
 | --- | --- |
-| `index.html` | Die Seite: Name, Jetzt (Projekte), Kontakt |
+| `index.html` | Die Seite: Name, Jetzt (Schwarz Digits), Projekte, Kontakt |
 | `assets/site.css` | Farben als Tokens (hell und dunkel), eine Schrift, eine Akzentfarbe |
 | `assets/site.js` | Der Name aus Rasterpunkten (Canvas 2D, ohne Bibliothek) |
 | `assets/fonts/` | Plus Jakarta Sans und IBM Plex Mono, SIL Open Font License, selbst gehostet |

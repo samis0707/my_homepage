@@ -106,6 +106,8 @@ button{font:inherit;color:inherit}
 .row__text a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:.2em;text-decoration-thickness:1.5px}
 .row__text a:hover{color:var(--accent-ink)}
 .row__tag{display:inline-flex;align-items:center;gap:.45rem;color:var(--ink-2);white-space:nowrap;font-variant-numeric:tabular-nums}
+.row--now{padding-block:.6rem 0}
+.row--now .row__name{font-size:1.55rem}
 .live{width:.45rem;height:.45rem;border-radius:50%;background:var(--accent);animation:puls 2.4s ease-out infinite}
 @keyframes puls{0%{box-shadow:0 0 0 0 rgba(0,159,227,.5)}70%,100%{box-shadow:0 0 0 .5rem rgba(0,159,227,0)}}
 .stack{margin-top:2rem}
