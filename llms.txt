@@ -1,18 +1,11 @@
 # Samis Ellsässer
 
-> Technischer Berater bei Schwarz Digits. Arbeitet fokussiert an wenigen Themen und bringt sie in den Betrieb: Stammdaten, Schnittstellen und KI-Agenten. Daneben Projekte für Druck und lokale Medien.
+> Baut Software für Druck, lokale Medien und KI-Agenten. Aktuell bei Schwarz Digits.
 
-## Aktuell (Stand Dezember 2026)
+## Projekte (Stand Dezember 2026)
 
-- Schwarz Digits: Technischer Berater im Projekt PSNF, einem IT-Projekt zwischen Schwarz Digits und Lidl
-- digitale medien: Relaunch von digitalemedien.de und IT-Beratung für die Druckerei in Heilbronn, mit den Portalen druck-s und Retorix (Dezember 2026)
-- Seeräuber digital: das Seeräuber-Blättle als App mit Support-Agent (Dezember 2026)
-
-## Werdegang
-
-- Seit Okt. 2024: IT-Consultant bei Schwarz Digits, Plattform für Stammdatenmanagement im Einkauf von Kaufland (3.000 Nutzer), KI-Beschleunigungsteam
-- Projekte: Geschäftspartner-Schnittstelle Verpackungsdaten (PreZero und Kaufland), MCP und agentische Workflows mit n8n, Modernisierung von Schnittstellen und Anmeldung (SAML 2.0), KI-Workshops für Fachbereiche
-- 2021 bis 2024: Dualer Student bei Schwarz Digits, Wirtschaftsinformatik (B. Sc.) an der DHBW Heilbronn
+- digitale medien: Relaunch von digitalemedien.de und IT-Beratung für die Druckerei in Heilbronn, mit den Portalen druck-s und Retorix
+- Seeräuber digital: das Seeräuber-Blättle als App mit Support-Agent
 
 ## Kontakt
 
