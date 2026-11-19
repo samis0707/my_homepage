@@ -1,0 +1,19 @@
+# Samis Ellsässer
+
+> Baut Software und KI-Agenten. Mal kommt die Idee aus dem Fachbereich, mal aus der IT.
+
+## Jetzt (Stand Dezember 2026)
+
+- Arbeitet aktuell bei Schwarz Digits
+
+## Projekte
+
+- Seeräuber digital: das Seeräuber-Blättle als App mit Support-Agent
+- linqr: die App-Plattform, auf der Seeräuber digital läuft
+- digitale medien: Relaunch von digitalemedien.de und IT-Beratung für die Druckerei in Heilbronn, mit den Portalen druck-s und Retorix
+
+## Kontakt
+
+- E-Mail: siehe Kontaktbereich auf https://samis-ellsaesser.de/ (nicht maschinenlesbar hinterlegt)
+- GitHub: https://github.com/samis0707
+- Auf LinkedIn kaum aktiv
