@@ -22,7 +22,6 @@ python3 -m http.server 8080
 Ein Mauszeiger fliegt herein und klickt auf den Namen; aus dem Klickpunkt schießen die Rasterpunkte in ihre Plätze,
 danach blendet die Seite gestaffelt ein (Muster „Geste & Abgang“ aus dem Skill website-overlay-clips im Repo digitalemedien).
 Overlay-Clips (Roboterhand aus Google Flow) kommen dazu, sobald sie generiert sind; sie lösen dieselben Marken aus.
-Entwurfs-Schalter unten rechts (Zeiger / ohne / noch einmal), vor dem Livegang entfernen.
 
 ## Raster
 
@@ -40,4 +39,3 @@ eingebunden (`/_vercel/insights/script.js`, `/_vercel/speed-insights/script.js`)
 ## Offen
 
 - Postleitzahl im Impressum bestätigen, Datenschutzerklärung prüfen lassen
-- Entwurfs-Schalter (`.lab`) vor dem Livegang entfernen

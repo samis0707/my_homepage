@@ -19,10 +19,9 @@
 <link rel="stylesheet" href="assets/site.css">
 <script>
 /* Auftakt: Klasse vor dem ersten Rendern setzen, damit nichts aufblitzt. Ohne JS bleibt alles sichtbar.
-   Kein Auftakt bei Hash in der Adresse, gescrolltem Start, „Bewegung reduzieren“ oder Entwurfs-Wahl „ohne“. */
+   Kein Auftakt bei Hash in der Adresse, gescrolltem Start, oder „Bewegung reduzieren“. */
 (function(){var d=document.documentElement;try{
-var w=null;try{w=localStorage.getItem('se-auftakt')}catch(e){}
-if(w==='ohne'||location.hash||(window.pageYOffset||0)>40)return;
+if(location.hash||(window.pageYOffset||0)>40)return;
 if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;
 d.classList.add('auftakt-vor');
 window.__seNot=setTimeout(function(){d.classList.remove('auftakt-vor')},7000);
@@ -131,15 +130,6 @@ window.__seNot=setTimeout(function(){d.classList.remove('auftakt-vor')},7000);
   <span>© 2026 Samis Ellsässer</span>
   <a href="impressum.html">Impressum &amp; Datenschutz</a>
 </footer>
-
-<!-- Entwurf: Auftakt vergleichen und wiederholen. Vor dem Livegang entfernen. -->
-<div class="lab mono" id="lab" aria-label="Entwurfs-Schalter">
-  <span class="lab__label">Entwurf · Auftakt</span>
-  <button type="button" data-wahl="zeiger" aria-pressed="true">Zeiger</button>
-  <button type="button" data-wahl="ohne" aria-pressed="false">ohne</button>
-  <button type="button" id="lab-nochmal">↻ noch einmal</button>
-  <button type="button" id="lab-leuchten">Rand leuchten</button>
-</div>
 
 <script src="assets/kontakt.js" defer></script>
 <script src="assets/site.js" defer></script>

@@ -138,14 +138,6 @@ button{font:inherit;color:inherit}
 .leuchten i + i{padding:9px;filter:blur(12px);opacity:.45}
 @keyframes dreh{to{--dreh:360deg}}
 
-/* Entwurfs-Schalter (wie das Lab auf digitalemedien.de), entfällt live */
-.lab{position:fixed;z-index:40;right:max(12px,env(safe-area-inset-right,0px));bottom:max(12px,env(safe-area-inset-bottom,0px));
-  display:flex;flex-wrap:wrap;align-items:center;gap:.4rem .6rem;max-width:calc(100% - 24px);
-  background:var(--paper);border:1.5px dashed var(--accent);border-radius:6px;padding:.5rem .7rem;font-size:.78rem}
-.lab__label{color:var(--ink-2)}
-.lab button{border:1px solid var(--line);background:transparent;border-radius:3px;padding:.25rem .55rem;cursor:pointer;font-family:var(--mono);font-size:.75rem}
-.lab button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-.lab button:hover{border-color:var(--ink)}
 
 @media (max-width:720px){
   .name{font-size:23vw}

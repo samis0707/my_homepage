@@ -4,7 +4,7 @@
    2 Auftakt: ein Mauszeiger fliegt herein und klickt auf den Namen. Aus dem Klickpunkt schießen die Punkte
      in ihr Raster, danach blendet die Seite gestaffelt ein. Platz für Overlay-Clips (Roboterhand) ist vorbereitet:
      Ein Clip ruft dieselben Marken auf (klick → Raster, weg → Inhalte).
-   3 Entwurfs-Schalter und Adresse kopieren.
+   3 Adresse kopieren.
    Ohne JS, ohne Canvas, bei „Bewegung reduzieren“ oder Hash in der Adresse steht die Seite sofort vollständig. */
 (function () {
   'use strict';
@@ -312,26 +312,7 @@
     return api;
   })();
 
-  /* ------------------------------------------------------------------ 3 Entwurf und Kontakt */
-  var lab = document.getElementById('lab');
-  if (lab) {
-    var wahl = ls('se-auftakt') || 'zeiger';
-    var mark = function () {
-      Array.prototype.forEach.call(lab.querySelectorAll('[data-wahl]'), function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-wahl') === wahl)); });
-    };
-    mark();
-    lab.addEventListener('click', function (e) {
-      var b = e.target.closest('button'); if (!b) return;
-      if (b.id === 'lab-leuchten') { leuchten.kurz(true); return; }
-      if (b.hasAttribute('data-wahl')) { wahl = b.getAttribute('data-wahl'); ls('se-auftakt', wahl); mark(); }
-      if ((b.id === 'lab-nochmal' || b.hasAttribute('data-wahl')) && wahl !== 'ohne' && !running) {
-        window.scrollTo(0, 0);
-        root.classList.add('auftakt-vor');
-        setTimeout(auftakt, 350);
-      }
-    });
-  }
-
+  /* ------------------------------------------------------------------ 3 Kontakt */
   var copy = document.getElementById('mail-copy');
   if (copy) copy.addEventListener('click', function () {
     var txt = document.getElementById('mail').textContent.trim();
