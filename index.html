@@ -49,6 +49,7 @@ window.__seNot=setTimeout(function(){d.classList.remove('auftakt-vor')},7000);
   <svg viewBox="0 0 24 24"><path d="M4 2.5v17.2l4.6-4.3 2.9 6.6 3.1-1.4-2.9-6.5H18L4 2.5z" fill="#14161c" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg>
 </div>
 <span class="ring" id="ring" aria-hidden="true"></span>
+<div class="leuchten" id="leuchten" aria-hidden="true"><i></i><i></i></div>
 
 <header class="top wrap" data-auf>
   <a class="brand" href="#start" aria-label="Samis Ellsässer, nach oben"><span class="brand__dot" aria-hidden="true"></span>se</a>
@@ -67,12 +68,7 @@ window.__seNot=setTimeout(function(){d.classList.remove('auftakt-vor')},7000);
       <span class="name__line">ellsässer</span>
       <canvas class="name__canvas" aria-hidden="true"></canvas>
     </h1>
-    <p class="lead" data-auf>Ich baue Software für Druck, lokale Medien und KI&#8209;Agenten. Mal kommt die Idee aus dem Fachbereich, mal aus der IT. Am besten wird es, wenn beide zusammen daran bauen.</p>
-    <p class="swap" data-swap data-auf aria-label="Business drives IT, IT drives Business">
-      <span class="swap__w swap__w--biz" aria-hidden="true">Business</span>
-      <span class="swap__mid" aria-hidden="true">drives</span>
-      <span class="swap__w swap__w--it" aria-hidden="true">IT</span>
-    </p>
+    <p class="lead" data-auf>Ich baue Software für Druck, lokale Medien und KI&#8209;Agenten. Mal kommt die Idee aus dem Fachbereich, mal aus der IT.</p>
     <p class="slug mono" aria-hidden="true" data-auf>
       <span>samis-ellsaesser.de</span>
       <span>Stand 12/2026</span>
@@ -147,6 +143,7 @@ window.__seNot=setTimeout(function(){d.classList.remove('auftakt-vor')},7000);
   <button type="button" data-wahl="zeiger" aria-pressed="true">Zeiger</button>
   <button type="button" data-wahl="ohne" aria-pressed="false">ohne</button>
   <button type="button" id="lab-nochmal">↻ noch einmal</button>
+  <button type="button" id="lab-leuchten">Rand leuchten</button>
 </div>
 
 <script src="assets/kontakt.js" defer></script>

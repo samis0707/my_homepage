@@ -81,12 +81,6 @@ button{font:inherit;color:inherit}
 .lead{max-width:34rem;margin-top:clamp(2rem,5vw,3rem);font-size:clamp(1.1rem,1.6vw,1.3rem);line-height:1.5}
 
 /* Bogenrand wie auf digitalemedien.de: Beschriftung und Kontrollstreifen */
-/* Paradigma: „Business drives IT“ und „IT drives Business“ tauschen die Plätze (site.js) */
-.swap{display:flex;align-items:baseline;gap:.42em;margin-top:clamp(2rem,4.5vw,3rem);
-  font-weight:750;font-size:clamp(1.5rem,3.4vw,2.4rem);letter-spacing:-.03em;line-height:1.1}
-.swap__w{display:inline-block;will-change:transform}
-.swap__w--it{color:var(--accent-ink)}
-.swap__mid{display:inline-block;font-family:var(--mono);font-weight:400;font-size:.5em;letter-spacing:.02em;color:var(--ink-2);text-transform:uppercase}
 .slug{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem 1.4rem;margin-top:clamp(1.6rem,3.5vw,2.4rem);color:var(--ink-2)}
 .strip{display:inline-flex;gap:3px}
 .strip i{width:.7rem;height:.7rem;display:block}
@@ -143,6 +137,19 @@ button{font:inherit;color:inherit}
 .ring{position:fixed;left:0;top:0;z-index:29;pointer-events:none;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;border:2px solid var(--accent);opacity:0}
 .ring.is-an{animation:ring .7s cubic-bezier(.2,.7,.2,1) forwards}
 @keyframes ring{0%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(9)}}
+
+/* Rand-Leuchten (mobil): der ganze Bildschirmrand glimmt in den Druckfarben, angelehnt an das
+   Leuchten beim langen Druck auf die Seitentaste. Zwei Ringe: scharf innen, weich als Schein. */
+@property --dreh{syntax:"<angle>";inherits:true;initial-value:0deg}
+.leuchten{position:fixed;inset:0;z-index:45;pointer-events:none;opacity:0;transition:opacity .7s ease;
+  --rund:clamp(28px,11vw,48px);--dreh:0deg}
+.leuchten.is-an{opacity:1;animation:dreh 3.2s linear infinite}
+.leuchten i{position:absolute;inset:0;border-radius:var(--rund);padding:2px;
+  background:conic-gradient(from var(--dreh),var(--c),var(--m),var(--y),var(--c),var(--m),var(--y),var(--c));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
+.leuchten i + i{padding:9px;filter:blur(12px);opacity:.45}
+@keyframes dreh{to{--dreh:360deg}}
 
 /* Entwurfs-Schalter (wie das Lab auf digitalemedien.de), entfällt live */
 .lab{position:fixed;z-index:40;right:max(12px,env(safe-area-inset-right,0px));bottom:max(12px,env(safe-area-inset-bottom,0px));

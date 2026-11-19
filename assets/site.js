@@ -223,6 +223,7 @@
     ring.style.left = pt.x + 'px'; ring.style.top = pt.y + 'px';
     ring.classList.remove('is-an'); void ring.offsetWidth; ring.classList.add('is-an');
     raster.burst(pt.x, pt.y);
+    leuchten.kurz();
   }
 
   function zeigerAuftakt() {
@@ -277,37 +278,38 @@
 
 
 
-  /* ------------------------------------------------------------------ 4 Paradigma
-     „Business drives IT“ ↔ „IT drives Business“: Die beiden Wörter tauschen im Bogen die Plätze
-     (FLIP: erst umstellen, dann von der alten Lage aus hinanimieren). Bei „Bewegung reduzieren“
-     steht still „Business ⇄ IT“. */
-  (function () {
-    var box = document.querySelector('[data-swap]');
-    if (!box) return;
-    var mid = box.querySelector('.swap__mid');
-    if (reduce && reduce.matches) { mid.textContent = '⇄'; return; }
-    var busy = false;
-    function tausch() {
-      if (busy || document.hidden || root.classList.contains('auftakt-vor')) return;
-      var w = box.querySelectorAll('.swap__w'), a = w[0], b = w[1];
-      if (!a.animate) return;
-      busy = true;
-      var els = [a, mid, b], vorher = els.map(function (e) { return e.getBoundingClientRect().left; });
-      box.insertBefore(b, a); box.appendChild(a);           // neue Reihenfolge: b drives a
-      var h = box.getBoundingClientRect().height;
-      els.forEach(function (e, i) {
-        var dx = vorher[i] - e.getBoundingClientRect().left;
-        if (Math.abs(dx) < 0.5) return;
-        var hub = e === mid ? 0 : (e === a ? -1 : 1) * h * 0.95;   // eins nach oben, eins nach unten
-        e.animate([
-          { transform: 'translate(' + dx + 'px,0)' },
-          { transform: 'translate(' + dx / 2 + 'px,' + hub + 'px)' },
-          { transform: 'translate(0,0)' }
-        ], { duration: 760, easing: 'cubic-bezier(.65,0,.25,1)' });
-      });
-      setTimeout(function () { busy = false; }, 800);
+
+  /* ------------------------------------------------------------------ 4 Rand-Leuchten (mobil)
+     Der Bildschirmrand glimmt in Cyan, Magenta und Gelb: einmal kurz, wenn der Name entsteht,
+     und solange man irgendwo lange auf den Bildschirm drückt. Nicht bei „Bewegung reduzieren“. */
+  var leuchten = (function () {
+    var el = document.getElementById('leuchten');
+    var api = { kurz: function () {}, an: false };
+    if (!el || (reduce && reduce.matches)) return api;
+    var mobil = window.matchMedia && window.matchMedia('(max-width: 720px), (pointer: coarse)').matches;
+    api.an = mobil;
+    var aus = 0;
+    function zeigen(ms) {
+      clearTimeout(aus);
+      el.classList.add('is-an');
+      if (ms) aus = setTimeout(function () { el.classList.remove('is-an'); }, ms);
     }
-    setInterval(tausch, 3400);
+    api.kurz = function (zwang) { if (api.an || zwang) zeigen(1700); };
+    /* Langer Druck: nach 450 ms ohne Bewegung leuchtet der Rand, bis man loslässt */
+    var halt = 0, sx = 0, sy = 0, haelt = false;
+    window.addEventListener('touchstart', function (e) {
+      if (!api.an || e.touches.length !== 1) return;
+      sx = e.touches[0].clientX; sy = e.touches[0].clientY;
+      halt = setTimeout(function () { haelt = true; zeigen(0); }, 450);
+    }, { passive: true });
+    window.addEventListener('touchmove', function (e) {
+      var t = e.touches[0];
+      if (t && Math.hypot(t.clientX - sx, t.clientY - sy) > 10) clearTimeout(halt);
+    }, { passive: true });
+    var los = function () { clearTimeout(halt); if (haelt) { haelt = false; zeigen(500); } };
+    window.addEventListener('touchend', los, { passive: true });
+    window.addEventListener('touchcancel', los, { passive: true });
+    return api;
   })();
 
   /* ------------------------------------------------------------------ 3 Entwurf und Kontakt */
@@ -320,6 +322,7 @@
     mark();
     lab.addEventListener('click', function (e) {
       var b = e.target.closest('button'); if (!b) return;
+      if (b.id === 'lab-leuchten') { leuchten.kurz(true); return; }
       if (b.hasAttribute('data-wahl')) { wahl = b.getAttribute('data-wahl'); ls('se-auftakt', wahl); mark(); }
       if ((b.id === 'lab-nochmal' || b.hasAttribute('data-wahl')) && wahl !== 'ohne' && !running) {
         window.scrollTo(0, 0);
