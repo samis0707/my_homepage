@@ -9,7 +9,7 @@ python3 -m http.server 8080
 | Pfad | Inhalt |
 | --- | --- |
 | `index.html` | Die Seite: Name, Jetzt (Schwarz Digits), Projekte, Kontakt |
-| `assets/site.css` | Farben als Tokens (hell und dunkel), eine Schrift, eine Akzentfarbe |
+| `assets/site.css` | Farben als Tokens: heller Grund, Dunkelblau, Ozeanblau als Akzent |
 | `assets/site.js` | Der Name aus Rasterpunkten (Canvas 2D, ohne Bibliothek) |
 | `assets/fonts/` | Plus Jakarta Sans und IBM Plex Mono, SIL Open Font License, selbst gehostet |
 | `tools/artefakt.py` | baut `dist/artefakt.html` für die Vorschau als Claude-Artefakt |
@@ -27,8 +27,8 @@ Entwurfs-Schalter unten rechts (Zeiger / ohne / noch einmal), vor dem Livegang e
 ## Raster
 
 Verwandt mit der Prägung auf digitalemedien.de: Der Name wird als Halbton-Raster abgetastet.
-Beim Laden fliegen die Punkte ein (Daten werden Druck), links feines Raster, rechts fast volle Fläche.
-Die Umlautpunkte im „ä“ tragen die Akzentfarbe (Prozess-Cyan). Der Zeiger schiebt die Punkte sanft beiseite.
+Beim Klick im Auftakt fliegen die Punkte ein, links feiner, rechts fast volle Fläche.
+Die Umlautpunkte im „ä“ tragen die Akzentfarbe (Ozeanblau). Der Zeiger schiebt die Punkte sanft beiseite.
 Bei „Bewegung reduzieren“ steht das Raster sofort, ohne JavaScript bleibt der normale Text.
 
 ## Auslieferung

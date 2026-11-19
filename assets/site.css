@@ -1,22 +1,21 @@
 /* samis-ellsaesser.de
-   Die Seite ist ein Bogen Papier, wie bei digitalemedien.de: helles Papier mit Korn, Tinte, eine Prozessfarbe (Cyan).
-   Der Name entsteht aus Rasterpunkten, ausgelöst durch einen Klick im Auftakt. Alles andere bleibt ruhig.
-   Bewusst nur hell: Die Auftakt-Clips werden gegen hellen Grund freigestellt. */
+   Schlicht: heller Grund, Dunkelblau für Schrift, ein Ozeanblau als einzige Akzentfarbe.
+   Der Name entsteht aus Punkten, ausgelöst durch einen Klick im Auftakt. Alles andere bleibt ruhig. */
 
 @font-face{font-family:"Plus Jakarta Sans";src:url("fonts/plus-jakarta-sans-latin-ext-wght-normal.woff2") format("woff2");font-weight:200 800;font-style:normal;font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
 @font-face{font-family:"Plus Jakarta Sans";src:url("fonts/plus-jakarta-sans-latin-wght-normal.woff2") format("woff2");font-weight:200 800;font-style:normal;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:"IBM Plex Mono";src:url("fonts/plex-mono-400.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
 
-/* Bogen mit linksbündigem Raster; Name groß, darunter Zeilen wie ein Register */
+/* Linksbündig; Name groß, darunter Zeilen wie ein Register */
 :root{
-  --paper:#f1f2ee;
-  --ink:#14161c;
-  --ink-2:#585c66;
-  --line:rgba(20,22,28,.13);
-  --hover:rgba(20,22,28,.035);
-  --accent:#009fe3;      /* Prozess-Cyan: Rasterpunkte, Markierungen */
-  --accent-ink:#00679c;  /* Cyan für Text, lesbar auf Papier */
-  --c:#009fe3; --m:#e6007e; --y:#ffeb00; --k:#1b1b1b;
+  --paper:#fbfcfe;
+  --ink:#0b1f3a;         /* Dunkelblau für Schrift */
+  --ink-2:#4b5b72;
+  --line:rgba(11,31,58,.12);
+  --hover:rgba(11,31,58,.035);
+  --accent:#0a5a9c;      /* Ozeanblau: Akzent, auch als Textfarbe lesbar */
+  --accent-ink:#0a5a9c;
+  --accent-hell:#5aa2dc; /* hellere Stufe nur fürs Rand-Leuchten */
   --font:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
   --gutter:clamp(16px,4vw,40px);
@@ -30,11 +29,6 @@ body{
   margin:0;background:var(--paper);color:var(--ink);
   font-family:var(--font);font-size:1.0625rem;line-height:1.55;
   -webkit-font-smoothing:antialiased;
-}
-/* Papierkorn wie auf digitalemedien.de */
-body::after{
-  content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.45;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 .22 -.04'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 h1,h2,p,ul{margin:0}
 ul{padding:0;list-style:none}
@@ -78,15 +72,8 @@ button{font:inherit;color:inherit}
 .is-raster .name__line{color:transparent}
 .is-raster .name__canvas{display:block}
 
-.lead{max-width:34rem;margin-top:clamp(2rem,5vw,3rem);font-size:clamp(1.1rem,1.6vw,1.3rem);line-height:1.5}
+.lead{max-width:36rem;margin-top:clamp(2rem,5vw,3rem);font-size:clamp(1.1rem,1.6vw,1.3rem);line-height:1.5}
 
-/* Bogenrand wie auf digitalemedien.de: Beschriftung und Kontrollstreifen */
-.slug{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem 1.4rem;margin-top:clamp(1.6rem,3.5vw,2.4rem);color:var(--ink-2)}
-.strip{display:inline-flex;gap:3px}
-.strip i{width:.7rem;height:.7rem;display:block}
-.strip .c{background:var(--c)}.strip .m{background:var(--m)}.strip .y{background:var(--y)}.strip .k{background:var(--k)}
-.strip .k5{background:color-mix(in srgb,var(--k) 50%,var(--paper))}
-.strip .k2{background:color-mix(in srgb,var(--k) 20%,var(--paper))}
 
 /* Abschnitte */
 .block{padding-block:clamp(3rem,8vw,6rem);border-top:1px solid var(--line)}
@@ -108,7 +95,7 @@ button{font:inherit;color:inherit}
 .row--now{padding-block:.6rem 0}
 .row--now .row__name{font-size:1.55rem}
 .live{width:.45rem;height:.45rem;border-radius:50%;background:var(--accent);animation:puls 2.4s ease-out infinite}
-@keyframes puls{0%{box-shadow:0 0 0 0 rgba(0,159,227,.5)}70%,100%{box-shadow:0 0 0 .5rem rgba(0,159,227,0)}}
+@keyframes puls{0%{box-shadow:0 0 0 0 rgba(10,90,156,.45)}70%,100%{box-shadow:0 0 0 .5rem rgba(10,90,156,0)}}
 .stack{margin-top:2rem}
 
 /* Kontakt */
@@ -138,14 +125,14 @@ button{font:inherit;color:inherit}
 .ring.is-an{animation:ring .7s cubic-bezier(.2,.7,.2,1) forwards}
 @keyframes ring{0%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(9)}}
 
-/* Rand-Leuchten (mobil): der ganze Bildschirmrand glimmt in den Druckfarben, angelehnt an das
+/* Rand-Leuchten (mobil): der ganze Bildschirmrand glimmt in Blau, angelehnt an das
    Leuchten beim langen Druck auf die Seitentaste. Zwei Ringe: scharf innen, weich als Schein. */
 @property --dreh{syntax:"<angle>";inherits:true;initial-value:0deg}
 .leuchten{position:fixed;inset:0;z-index:45;pointer-events:none;opacity:0;transition:opacity .7s ease;
   --rund:clamp(28px,11vw,48px);--dreh:0deg}
 .leuchten.is-an{opacity:1;animation:dreh 3.2s linear infinite}
 .leuchten i{position:absolute;inset:0;border-radius:var(--rund);padding:2px;
-  background:conic-gradient(from var(--dreh),var(--c),var(--m),var(--y),var(--c),var(--m),var(--y),var(--c));
+  background:conic-gradient(from var(--dreh),var(--accent),var(--accent-hell),var(--accent),var(--accent-hell),var(--accent));
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
   mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
 .leuchten i + i{padding:9px;filter:blur(12px);opacity:.45}

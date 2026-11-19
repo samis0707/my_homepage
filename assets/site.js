@@ -1,5 +1,5 @@
 /* samis-ellsaesser.de
-   1 Raster: der Name aus Halbton-Punkten (Canvas 2D). Links feiner, rechts voller, die Punkte im „ä“ in Cyan.
+   1 Raster: der Name aus Halbton-Punkten (Canvas 2D). Links feiner, rechts voller, die Punkte im „ä“ in Blau.
      Der Zeiger schiebt die Punkte sanft beiseite.
    2 Auftakt: ein Mauszeiger fliegt herein und klickt auf den Namen. Aus dem Klickpunkt schießen die Punkte
      in ihr Raster, danach blendet die Seite gestaffelt ein. Platz für Overlay-Clips (Roboterhand) ist vorbereitet:
@@ -29,7 +29,7 @@
     var mode = 'still';            // still | wait | burst
     var t0 = 0, raf = 0, endAt = 0;
     var ptr = { x: -1e4, y: -1e4, on: false };
-    var colors = { ink: '#14161c', accent: '#009fe3' };
+    var colors = { ink: '#0b1f3a', accent: '#0a5a9c' };
 
     function readColors() {
       var cs = getComputedStyle(root);
@@ -280,7 +280,7 @@
 
 
   /* ------------------------------------------------------------------ 4 Rand-Leuchten (mobil)
-     Der Bildschirmrand glimmt in Cyan, Magenta und Gelb: einmal kurz, wenn der Name entsteht,
+     Der Bildschirmrand glimmt in Blau: einmal kurz, wenn der Name entsteht,
      und solange man irgendwo lange auf den Bildschirm drückt. Nicht bei „Bewegung reduzieren“. */
   var leuchten = (function () {
     var el = document.getElementById('leuchten');
