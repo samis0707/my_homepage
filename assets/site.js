@@ -277,6 +277,39 @@
 
 
 
+  /* ------------------------------------------------------------------ 4 Paradigma
+     „Business drives IT“ ↔ „IT drives Business“: Die beiden Wörter tauschen im Bogen die Plätze
+     (FLIP: erst umstellen, dann von der alten Lage aus hinanimieren). Bei „Bewegung reduzieren“
+     steht still „Business ⇄ IT“. */
+  (function () {
+    var box = document.querySelector('[data-swap]');
+    if (!box) return;
+    var mid = box.querySelector('.swap__mid');
+    if (reduce && reduce.matches) { mid.textContent = '⇄'; return; }
+    var busy = false;
+    function tausch() {
+      if (busy || document.hidden || root.classList.contains('auftakt-vor')) return;
+      var w = box.querySelectorAll('.swap__w'), a = w[0], b = w[1];
+      if (!a.animate) return;
+      busy = true;
+      var els = [a, mid, b], vorher = els.map(function (e) { return e.getBoundingClientRect().left; });
+      box.insertBefore(b, a); box.appendChild(a);           // neue Reihenfolge: b drives a
+      var h = box.getBoundingClientRect().height;
+      els.forEach(function (e, i) {
+        var dx = vorher[i] - e.getBoundingClientRect().left;
+        if (Math.abs(dx) < 0.5) return;
+        var hub = e === mid ? 0 : (e === a ? -1 : 1) * h * 0.95;   // eins nach oben, eins nach unten
+        e.animate([
+          { transform: 'translate(' + dx + 'px,0)' },
+          { transform: 'translate(' + dx / 2 + 'px,' + hub + 'px)' },
+          { transform: 'translate(0,0)' }
+        ], { duration: 760, easing: 'cubic-bezier(.65,0,.25,1)' });
+      });
+      setTimeout(function () { busy = false; }, 800);
+    }
+    setInterval(tausch, 3400);
+  })();
+
   /* ------------------------------------------------------------------ 3 Entwurf und Kontakt */
   var lab = document.getElementById('lab');
   if (lab) {

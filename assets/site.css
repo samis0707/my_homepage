@@ -81,8 +81,13 @@ button{font:inherit;color:inherit}
 .lead{max-width:34rem;margin-top:clamp(2rem,5vw,3rem);font-size:clamp(1.1rem,1.6vw,1.3rem);line-height:1.5}
 
 /* Bogenrand wie auf digitalemedien.de: Beschriftung und Kontrollstreifen */
-.slug{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem 1.4rem;margin-top:clamp(2.5rem,6vw,4rem);color:var(--ink-2)}
-.slug__arrow{color:var(--accent-ink)}
+/* Paradigma: „Business drives IT“ und „IT drives Business“ tauschen die Plätze (site.js) */
+.swap{display:flex;align-items:baseline;gap:.42em;margin-top:clamp(2rem,4.5vw,3rem);
+  font-weight:750;font-size:clamp(1.5rem,3.4vw,2.4rem);letter-spacing:-.03em;line-height:1.1}
+.swap__w{display:inline-block;will-change:transform}
+.swap__w--it{color:var(--accent-ink)}
+.swap__mid{display:inline-block;font-family:var(--mono);font-weight:400;font-size:.5em;letter-spacing:.02em;color:var(--ink-2);text-transform:uppercase}
+.slug{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem 1.4rem;margin-top:clamp(1.6rem,3.5vw,2.4rem);color:var(--ink-2)}
 .strip{display:inline-flex;gap:3px}
 .strip i{width:.7rem;height:.7rem;display:block}
 .strip .c{background:var(--c)}.strip .m{background:var(--m)}.strip .y{background:var(--y)}.strip .k{background:var(--k)}
