@@ -2,8 +2,7 @@
    1 Raster: der Name aus Halbton-Punkten (Canvas 2D). Links feiner, rechts voller, die Punkte im „ä“ in Blau.
      Der Zeiger schiebt die Punkte sanft beiseite.
    2 Auftakt: ein Mauszeiger fliegt herein und klickt auf den Namen. Aus dem Klickpunkt schießen die Punkte
-     in ihr Raster, danach blendet die Seite gestaffelt ein. Platz für Overlay-Clips (Roboterhand) ist vorbereitet:
-     Ein Clip ruft dieselben Marken auf (klick → Raster, weg → Inhalte).
+     in ihr Raster, danach blendet die Seite gestaffelt ein.
    3 Adresse kopieren.
    Ohne JS, ohne Canvas, bei „Bewegung reduzieren“ oder Hash in der Adresse steht die Seite sofort vollständig. */
 (function () {
