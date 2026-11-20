@@ -8,7 +8,7 @@
 
 ## Projekte
 
-- Seeräuber digital: das Seeräuber-Blättle als App mit Support-Agent
+- Seeräuber digital: Digitalisierungs- und Transformationsprojekt für das Seeräuber-Blättle. Inhalte, Termine und Anzeigen verbunden, Anzeigen online schalten, Support-Agent
 - linqr: die App-Plattform, auf der Seeräuber digital läuft
 - digitale medien: Relaunch von digitalemedien.de und IT-Beratung für die Druckerei in Heilbronn, mit den Portalen druck-s und Retorix
 
